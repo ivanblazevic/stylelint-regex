@@ -1,0 +1,14 @@
+{
+  "name": "stylelint-regex",
+  "version": "1.0.0",
+  "description": "Stylelint for regex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivan Blazevic",
+  "license": "MIT",
+  "dependencies": {
+    "stylelint": "^9.6.0"
+  }
+}
