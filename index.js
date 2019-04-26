@@ -29,18 +29,20 @@ module.exports = stylelint.createPlugin(ruleName, function(
       return;
     }
 
-    for (regex in primaryOption) {
-      const message = primaryOption[regex];
-      m = new RegExp(regex, 'gm').exec(css);
-      if (m) {
-        stylelint.utils.report({
-          message: message + ' has been violated in ' + fileName,
-          ruleName: ruleName,
-          result: postcssResult,
-          node: postcssRoot
-        });
+    primaryOption.forEach(o => {
+      for (regex in o) {
+        const message = o[regex];
+        m = new RegExp(regex, 'gm').exec(css);
+        if (m) {
+          stylelint.utils.report({
+            message: message + ' has been violated in ' + fileName,
+            ruleName: ruleName,
+            result: postcssResult,
+            node: postcssRoot
+          });
+        }
       }
-    }
+    });
   };
 });
 
