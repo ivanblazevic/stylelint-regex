@@ -1,9 +1,9 @@
 // Abbreviated example
-var stylelint = require("stylelint");
+var stylelint = require('stylelint');
 
-var ruleName = "stylelint/regex";
+var ruleName = 'stylelint/regex';
 var messages = stylelint.utils.ruleMessages(ruleName, {
-  expected: "Expected ..."
+  expected: 'Expected ...'
 });
 
 module.exports = stylelint.createPlugin(ruleName, function(
@@ -25,12 +25,16 @@ module.exports = stylelint.createPlugin(ruleName, function(
     const css = postcssRoot.source.input.css;
     let m;
 
+    if (secondaryOptionObject.ignore.some(f => fileName.indexOf(f) > -1)) {
+      return;
+    }
+
     for (regex in primaryOption) {
       const message = primaryOption[regex];
-      m = new RegExp(regex, "gm").exec(css);
+      m = new RegExp(regex, 'gm').exec(css);
       if (m) {
         stylelint.utils.report({
-          message: message + " has been violated in " + fileName,
+          message: message + ' has been violated in ' + fileName,
           ruleName: ruleName,
           result: postcssResult,
           node: postcssRoot
